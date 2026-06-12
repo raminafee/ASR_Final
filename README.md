@@ -8,7 +8,7 @@
 Traditional diagnostic assessment of Speech Sound Disorders (SSDs) in children relies on manual, subjective clinical transcriptions, which are highly vulnerable to intra-examiner variability and cause diagnostic bottlenecks in resource-constrained medical or educational environments. 
 
 This project delivers a high-throughput, objective diagnostic metric by evaluating and deploying two distinct paradigms:
-1. **Framework 1 (Hybrid ML):** A pipeline utilizing frozen Wav2Vec2 layers for deep acoustic embeddings ($\mathbf{X}_{	ext{deep}} \in \mathbb{R}^{1024}$), combined with handcrafted physical micro-acoustic biomarkers (Local Jitter, Absolute Shimmer, HNR). Features are filtered via an XGBoost Split Information Gain ranker (Top 100 Golden Features) and classified through an RBF-Kernel SVM optimized for high clinical sensitivity ($	au_{	ext{SVM}} = 0.30$).
+1. **Framework 1 (Hybrid ML):** A pipeline utilizing frozen Wav2Vec2 layers for deep acoustic embeddings ($\mathbf{X}_{\text{deep}} \in \mathbb{R}^{1024}$), combined with handcrafted physical micro-acoustic biomarkers (Local Jitter, Absolute Shimmer, HNR). Features are filtered via an XGBoost Split Information Gain ranker (Top 100 Golden Features) and classified through an RBF-Kernel SVM optimized for high clinical sensitivity ($\tau_{\text{SVM}} = 0.30$).
 2. **Framework 2 (End-to-End Deep Fine-Tuning):** A fully mutated `Wav2Vec2-Large-XLSR-53-Arabic` architecture, stripped of its native CTC layer and injected with a specialized Sequence Classification Head. The entire network is fully backpropagated using Cross-Entropy Loss to dynamically self-calibrate to pediatric pitch ranges and distinctive Arabic phone boundaries.
 
 ---
