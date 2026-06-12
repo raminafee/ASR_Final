@@ -1,4 +1,7 @@
 # Automatic Mispronunciation Detection & Speech Intelligibility Assessment in Arabic-Speaking Children
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Wav2Vec2--XLSR--Arabic-yellow)](https://huggingface.co/elgeish/wav2vec2-large-xlsr-53-arabic)
 
 ## 📋 Project Overview
 
@@ -26,8 +29,10 @@ The corpus exhibits a highly realistic, clinically balanced 60/40 label split:
 * **Normal Class (Symptom-Free):** 1,219 recordings (60.95%) providing the physiological baseline.
 * **Disordered Class (Pathological):** 781 recordings (39.05%) explicitly annotated by Speech-Language Pathologists (SLPs) at the phoneme level for three core structural linguistic errors:
   * **Insertion (I):** Intruding non-existent phonemes into the target word matrix.
-  * **Deletion (D):** Complete omission of necessary articulatory phonemes (e.g., omitting the rolling liquid $/r/$ in "ورق" $ightarrow$ "واق").
-  * **Substitution (S):** Replacing standard Arabic phonemes due to motoric/cognitive constraints (e.g., swapping the uvular stop $/q/$ for the velar stop $/k/$ in "صديق" $ightarrow$ "صديك").
+  * **Deletion (D):** Complete omission of necessary articulatory phonemes (e.g., omitting the rolling liquid $/r/$ in "ورق" $
+ightarrow$ "واق").
+  * **Substitution (S):** Replacing standard Arabic phonemes due to motoric/cognitive constraints (e.g., swapping the uvular stop $/q/$ for the velar stop $/k/$ in "صديق" $
+ightarrow$ "صديك").
 
 ### 3. Speaker-Independent Partitioning
 To guarantee generalization and prevent the models from memorizing speaker-specific fundamental frequencies ($F_0$) or domestic background acoustics, a strict speaker-independent boundary was enforced:
