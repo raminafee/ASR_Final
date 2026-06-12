@@ -48,4 +48,46 @@ To guarantee generalization and prevent the models from memorizing speaker-speci
 * **Ibrahim Abu Zaid**
 * **Ahmed Alnahhal**
 
+---
+## 📝 Technical Notes & Usage Guide
+
+## ⚙️ Framework 1:
+
+* **Notebook Execution:** The first framework was successfully executed locally using the notebook file named **`SVM_XGBoost_improve.ipynb`**. The notebook is structured into distinct cells, with dedicated markdown cells included to clarify specific methodological points and observations throughout the workflow.
+* **Audio Directory Structure:** The dataset's audio recordings are located within a core directory named `audio/` which was downloaded from dataset link. 
+* **Cell 1 (Pipeline & Model Training):** The first cell automatically inspects the actual content of the `audio/` directory, indexes the audio samples, extracts the micro-acoustic features, completes the data preprocessing, trains both models, and outputs the final accuracy metrics for both the **SVM** and **XGBoost** frameworks.
+* **Cell 2 (private check):** The second cell executes the evaluation and testing pipeline specifically on a dedicated audio directory belonging to a single child, named `Test_Child/`.
+* **Cell 3 (Interactive Child Testing Interface):** The subsequent cell provides a functional interface designed to evaluate new or arbitrary speech samples from any child. To test new samples, the respective audio files must be placed inside the `Test_Child/` directory before executing the cell.
+
+## ⚙️ Framework 2: End-to-End Fine-Tuning Execution Details
+
+* **Execution Environment:** Due to the high computational requirements of deep transformer optimization, this experiment was executed on **Google Colab** leveraging dedicated hardware acceleration (**CUDA GPU**).
+* **Notebook Structure:** The architecture is deployed via the notebook named **`fine_tuning.ipynb`**, which is logically partitioned into functional execution cells.
+* **Cell 1 (Dataset Diagnostics & Distribution):** The initial cell inspects the entire clinical corpus of **2,000 audio files**, automatically stratifying the samples into distinct pathological categories (Disordered vs. Normal classes). It dynamically partitions the data into a **80/20 train/validation split**:
+  * **Training Set:** 1,600 audio recordings.
+  * **Validation Set:** 400 audio recordings.
+
+* **Training and Convergence Log:**
+  The full end-to-end backpropagation trained stably for **3 Epochs** across 300 optimization steps over approximately **18 minutes and 26 seconds**, demonstrating smooth loss decay:
+
+  | Epoch | Training Loss | Validation Loss |
+  | :---: | :---: | :---: |
+  | 1 | 2.212494 | 0.651872 |
+  | 2 | 1.571686 | 0.537741 |
+  | 3 | 1.475045 | 0.474773 |
+
+  Upon successful convergence, the final model shards were verified, assembled, and permanently serialized to Google Drive at: `/content/drive/MyDrive/ASRFiles/my_finetuned_wav2vec2_model`.
+
+* **Inference Pipeline & Out-of-Sample Screening:**
+  A subsequent dedicated cell loads the production-ready fine-tuned model directly from the Google Drive directory. This cell is built as an out-of-sample diagnostic utility. It automatically screens any targeted directory containing speech waveforms for a specific patient—configured by default to scan `/content/drive/MyDrive/ASRFiles/Test_Child`—and extracts the finalized algorithmic diagnosis and intelligibility assessment metrics.
+
+### 📁 Directory Structure & Storage (Google Drive / Local)
+🔗 **Google Drive ASRFiles Folder:** [Access the folder here](https://drive.google.com/drive/folders/1YZ8Mg05bqGoSaTWV38D24kRD895KxCQL?usp=sharing)
+
+* **ASRFiles/** (Root Directory)
+    * 📁 **audio/** — Contains the baseline clinical corpus (2,000 `.wav` files).
+    * 📁 **Test_Child/** — Dedicated directory for out-of-sample patient screening and evaluation files.
+    * 📁 **my_finetuned_wav2vec2_model/** — Serialized model checkpoints and weights saved after fine-tuning.
+      
 *PhD Candidates, Department of Computer Engineering, Islamic University - Gaza, Palestine*
+
