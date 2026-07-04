@@ -7,6 +7,13 @@
 
 Traditional diagnostic assessment of Speech Sound Disorders (SSDs) in children relies on manual, subjective clinical transcriptions, which are highly vulnerable to intra-examiner variability and cause diagnostic bottlenecks in resource-constrained medical or educational environments. 
 
+**Highlights:**
+• A comprehensive comparison between end-to-end, hybrid, and conventional acoustic baseline models for Arabic child mispronunciation detection.
+• A fine-tuned Wav2Vec2 model achieved the highest overall performance with 91.80% accuracy and an AUC of 0.9864.
+• Hybrid models combining Wav2Vec2 embeddings with clinical acoustic features outperformed conventional handcrafted acoustic baselines.
+• Conventional MFCC and eGeMAPS baselines showed substantially lower performance under the official speaker-independent evaluation protocol.
+• Deep contextual speech representations demonstrated superior generalization to previously unseen child speakers
+
 This project delivers a high-throughput, objective diagnostic metric by evaluating and deploying two distinct paradigms:
 1. **Framework 1 (Hybrid ML):** A pipeline utilizing frozen Wav2Vec2 layers for deep acoustic embeddings (*X_deep* in *R^1024*), combined with handcrafted physical micro-acoustic biomarkers (Local Jitter, Absolute Shimmer, HNR). Features are filtered via an XGBoost Split Information Gain ranker (Top 100 Golden Features) and classified through an RBF-Kernel SVM optimized for high clinical sensitivity.
 2. **Framework 2 (End-to-End Deep Fine-Tuning):** A fully mutated `Wav2Vec2-Large-XLSR-53-Arabic` architecture, stripped of its native CTC layer and injected with a specialized Sequence Classification Head. The entire network is fully backpropagated using Cross-Entropy Loss to dynamically self-calibrate to pediatric pitch ranges and distinctive Arabic phone boundaries.
@@ -63,9 +70,7 @@ To guarantee generalization and prevent the models from memorizing speaker-speci
 
 * **Execution Environment:** Due to the high computational requirements of deep transformer optimization, this experiment was executed on **Google Colab** leveraging dedicated hardware acceleration (**CUDA GPU**).
 * **Notebook Structure:** The architecture is deployed via the notebook named **`fine_tuning.ipynb`**, which is logically partitioned into functional execution cells.
-* **Cell 1 (Dataset Diagnostics & Distribution):** The initial cell inspects the entire clinical corpus of **2,000 audio files**, automatically stratifying the samples into distinct pathological categories (Disordered vs. Normal classes). It dynamically partitions the data into a **80/20 train/validation split**:
-  * **Training Set:** 1,600 audio recordings.
-  * **Validation Set:** 400 audio recordings.
+* **Cell 1 (Dataset Diagnostics & Distribution):** The initial cell inspects the entire clinical corpus of **2,000 audio files**, automatically stratifying the samples into distinct pathological categories (Disordered vs. Normal classes).
 
 * **Training and Convergence Log:**
   The full end-to-end backpropagation trained stably for **3 Epochs** across 300 optimization steps over approximately **18 minutes and 26 seconds**, demonstrating smooth loss decay:
