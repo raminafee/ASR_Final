@@ -8,6 +8,7 @@
 Traditional diagnostic assessment of Speech Sound Disorders (SSDs) in children relies on manual, subjective clinical transcriptions, which are highly vulnerable to intra-examiner variability and cause diagnostic bottlenecks in resource-constrained medical or educational environments. 
 
 **Highlights:**
+
 • A comprehensive comparison between end-to-end, hybrid, and conventional acoustic baseline models for Arabic child mispronunciation detection.
 
 • A fine-tuned Wav2Vec2 model achieved the highest overall performance with 91.80% accuracy and an AUC of 0.9864.
