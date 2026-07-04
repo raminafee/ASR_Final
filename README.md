@@ -9,9 +9,13 @@ Traditional diagnostic assessment of Speech Sound Disorders (SSDs) in children r
 
 **Highlights:**
 • A comprehensive comparison between end-to-end, hybrid, and conventional acoustic baseline models for Arabic child mispronunciation detection.
+
 • A fine-tuned Wav2Vec2 model achieved the highest overall performance with 91.80% accuracy and an AUC of 0.9864.
+
 • Hybrid models combining Wav2Vec2 embeddings with clinical acoustic features outperformed conventional handcrafted acoustic baselines.
+
 • Conventional MFCC and eGeMAPS baselines showed substantially lower performance under the official speaker-independent evaluation protocol.
+
 • Deep contextual speech representations demonstrated superior generalization to previously unseen child speakers
 
 This project delivers a high-throughput, objective diagnostic metric by evaluating and deploying two distinct paradigms:
